@@ -18,6 +18,11 @@ spec:
       labels:
         app.kubernetes.io/name: snake-game
     spec:
+      tolerations:
+      - key: "eks.amazonaws.com/compute-type"
+        operator: "Equal"
+        value: "fargate"
+        effect: "NoSchedule"
       containers:
       - name: snake-game
         image: vamsikrishna212/snake-game:latest
