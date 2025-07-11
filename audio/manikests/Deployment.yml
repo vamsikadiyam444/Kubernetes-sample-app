@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: game-snake
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: game-snake
+  name: deployment-snake
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: snake-game
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: snake-game
+    spec:
+      containers:
+      - name: snake-game
+        image: vamsikrishna212/snake-game:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
